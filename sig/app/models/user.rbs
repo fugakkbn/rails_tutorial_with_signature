@@ -1,0 +1,27 @@
+class User < ApplicationRecord
+  attr_accessor remember_token (): String
+  attr_accessor activation_token (): String
+  attr_accessor reset_token (): String
+
+  VALID_EMAIL_REGEX: Regexp
+
+  def self.digest: (String) -> BCrypt::Password
+  def self.new_token: () -> String
+
+  def remember: () -> void
+  def authenticated?: (Symbol, String) -> bool
+  def forget: () -> void
+  def activate: () -> void
+  def send_activation_email: () -> void
+  def create_reset_digest: () -> void
+  def send_password_reset_email: () -> void
+  def password_reset_expired?: () -> bool
+  def feed: () -> Micropost::ActiveRecord_Relation
+  def follow: (User) -> void
+  def unfollow: (User) -> void
+  def following?: (User) -> bool
+
+  private
+  def downcase_email: () -> void
+  def create_activation_digest: () -> void
+end
